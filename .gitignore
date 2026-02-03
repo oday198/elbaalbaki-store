@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment
+.env
+.env*
+
+# Next.js
+.next/
+out/
+
+# Build
+build/
+dist/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+*.pem
+
+# Uploads
+uploads/
+
+# Other
+.vercel

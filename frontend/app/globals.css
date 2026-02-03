@@ -1,0 +1,614 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --primary: #2c2c2c;
+  --primary-light: #4a4a4a;
+  --secondary: #8b8b8b;
+  --accent: #1a1a1a;
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #e5e5e5;
+  --gray-300: #d4d4d4;
+  --gray-400: #a3a3a3;
+  --gray-500: #737373;
+  --gray-600: #525252;
+  --gray-700: #404040;
+  --gray-800: #262626;
+  --gray-900: #171717;
+  --card-bg: #ffffff;
+  --border-color: #e5e5e5;
+  --text-primary: #0a0a0a;
+  --text-secondary: #525252;
+  --text-muted: #737373;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-gray-50: var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-400: var(--gray-400);
+  --color-gray-500: var(--gray-500);
+  --color-gray-600: var(--gray-600);
+  --color-gray-700: var(--gray-700);
+  --color-gray-800: var(--gray-800);
+  --color-gray-900: var(--gray-900);
+  --color-card-bg: var(--card-bg);
+  --color-border: var(--border-color);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  
+  --font-sans: var(--font-geist-sans), 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #fafafa;
+    --primary: #e5e5e5;
+    --primary-light: #d4d4d4;
+    --secondary: #a3a3a3;
+    --accent: #f5f5f5;
+    --gray-50: #171717;
+    --gray-100: #262626;
+    --gray-200: #404040;
+    --gray-300: #525252;
+    --gray-400: #737373;
+    --gray-500: #a3a3a3;
+    --gray-600: #d4d4d4;
+    --gray-700: #e5e5e5;
+    --gray-800: #f5f5f5;
+    --gray-900: #fafafa;
+    --card-bg: #171717;
+    --border-color: #404040;
+    --text-primary: #fafafa;
+    --text-secondary: #d4d4d4;
+    --text-muted: #a3a3a3;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-50);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-400);
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--gray-300);
+  color: var(--text-primary);
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Utility classes */
+.product-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gray-300);
+}
+
+/* Button styles */
+.btn-primary {
+  background: var(--text-primary);
+  color: var(--background);
+  border: 1px solid var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.btn-primary:hover {
+  background: var(--gray-800);
+  border-color: var(--gray-800);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+  border-color: var(--text-primary);
+  background: var(--gray-50);
+}
+
+/* Input styles */
+.input-field {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  width: 100%;
+  font-size: 0.875rem;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--text-primary);
+}
+
+/* Navigation styles */
+.nav-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: color 0.2s ease;
+  text-transform: uppercase;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+/* Category tags */
+.category-tag {
+  background: var(--gray-50);
+  color: var(--text-secondary);
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  border: 1px solid var(--border-color);
+  transition: all 0.2s ease;
+}
+
+.category-tag:hover {
+  background: var(--gray-100);
+  color: var(--text-primary);
+  border-color: var(--gray-300);
+}
+
+/* Price styling */
+.price {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: 0.025em;
+}
+
+.price-old {
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+/* Badge for new/sale items */
+.badge {
+  background: var(--text-primary);
+  color: var(--background);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  text-transform: uppercase;
+}
+
+/* Sale badge */
+.badge-sale {
+  background: var(--text-primary);
+  color: var(--background);
+}
+
+/* New badge */
+.badge-new {
+  background: var(--gray-800);
+  color: var(--background);
+}
+
+/* Section headers */
+.section-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Hero slider styles */
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  transition: opacity 0.5s ease;
+}
+
+.slide-content {
+  background: linear-gradient(to right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+  padding: 3rem;
+  border-radius: var(--radius-md);
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+}
+
+.slider-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--border-color);
+  transition: background 0.3s ease;
+  cursor: pointer;
+}
+
+.slider-dot.active {
+  background: var(--text-primary);
+}
+
+/* Image slider for products */
+.image-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-slider-track {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.image-slide {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.slider-nav:hover {
+  background: var(--background);
+  border-color: var(--text-primary);
+}
+
+.slider-nav.prev {
+  left: 1rem;
+}
+
+.slider-nav.next {
+  right: 1rem;
+}
+
+/* Currency selector */
+.currency-selector {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  appearance: none;
+  text-transform: uppercase;
+}
+
+.currency-selector:focus {
+  outline: none;
+}
+
+/* WhatsApp button */
+.whatsapp-button {
+  background: #25D366;
+  color: white;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  transition: opacity 0.2s ease;
+}
+
+.whatsapp-button:hover {
+  opacity: 0.9;
+}
+
+/* Text utilities */
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+/* Border utilities */
+.border-light {
+  border-color: var(--border-color);
+}
+
+/* Background utilities */
+.bg-light {
+  background: var(--gray-50);
+}
+
+.bg-card {
+  background: var(--card-bg);
+}
+
+/* Animation for fading */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease;
+}
+
+/* Custom hover effects */
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Grid utilities */
+.grid-products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Container */
+.container-narrow {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+
+
+
+
+
+/* Add these after your existing CSS */
+
+/* Marquee Animation for Rotating Offers */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Pause animation on hover */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Parisian Style Gradient */
+.bg-parisian {
+  background: linear-gradient(135deg, #ffebee 0%, #f3e5f5 50%, #e8eaf6 100%);
+}
+
+.bg-lavender-50 {
+  background-color: #f3e5f5;
+}
+
+/* Elegant border styles */
+.border-rose-100 {
+  border-color: #ffcdd2;
+}
+
+/* Offer item styling */
+.offer-item {
+  position: relative;
+  padding: 0.5rem 1.5rem;
+}
+
+.offer-item::after {
+  content: '';
+  position: absolute;
+  right: -0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 3px;
+  background: #ec4899;
+  border-radius: 50%;
+}
+
+/* Last item doesn't need the separator */
+.offer-item:last-child::after {
+  display: none;
+}
+
+/* Elegant shadow for depth */
+.shadow-parisian {
+  box-shadow: 0 4px 20px rgba(244, 143, 177, 0.15);
+}
+
+/* French-inspired color palette */
+.text-rose-800 {
+  color: #9d174d;
+}
+
+.bg-rose-50 {
+  background-color: #fff1f2;
+}
+
+/* Subtle pulse animation for attention */
+@keyframes subtle-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-subtle-pulse {
+  animation: subtle-pulse 3s ease-in-out infinite;
+}
+
+/* Elegant separator */
+.separator-elegant {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ec4899, transparent);
+}
+
+/* Hover effects for offer items */
+.offer-hover {
+  transition: all 0.3s ease;
+}
+
+.offer-hover:hover {
+  transform: translateY(-1px);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .animate-marquee {
+    animation: marquee 60s linear infinite; 
+  }
+  
+  .offer-item {
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Add a French-inspired background pattern */
+.bg-french-pattern {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(244, 143, 177, 0.1) 0%, transparent 55%),
+    radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 55%);
+}
+
+
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
