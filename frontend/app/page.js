@@ -4,7 +4,7 @@ import axios from 'axios';
 import { ShoppingCart, Search, ChevronRight, ChevronLeft, Menu, X, Plus, Minus, Phone, MapPin, User, Filter, ChevronDown, ShoppingBag, Heart, Share2, Truck, Shield, Star, Check } from 'lucide-react';
 import { useCart } from './context/CartContext';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_URL = 'https://elbaalbaki-backend.onrender.com';
 
 export default function Home() {
   const [products, setProducts] = useState([]);

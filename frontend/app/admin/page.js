@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Package, ShoppingBag, X, Edit, Trash2, Plus, LogOut, Check, Image, Tag, Star, Truck } from 'lucide-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_URL = 'https://elbaalbaki-backend.onrender.com';
 
 export default function AdminPage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
