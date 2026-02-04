@@ -518,7 +518,7 @@ app.post('/api/cart/:userId', async (req, res) => {
     if (existingItem) {
       existingItem.quantity = quantity;
     } else {
-      cart.items.push({ productId, name, price, quantity });
+      cart.items.push({ productId, name, price, quantity, image: req.body.image });
     }
     
     cart.updatedAt = Date.now();

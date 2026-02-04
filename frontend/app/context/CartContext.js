@@ -96,7 +96,7 @@ export function CartProvider({ children }) {
     try {
       const productId = product._id || product.productId;
       
-      await axios.post(`${API_URL}/api/cart/${userId}`, {
+      await axios.post(`https://elbaalbaki-backend.onrender.com/api/cart/${userId}`,{
         productId: productId,
         name: product.name,
         price: product.price,
