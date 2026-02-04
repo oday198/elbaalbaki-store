@@ -633,7 +633,7 @@ export default function Home() {
               
               {/* SMALLER CONTENT BOX AT BOTTOM */}
                 <div className="relative container mx-auto px-4 h-full flex items-end pb-4 md:pb-8"> {/* Reduced pb-6 to pb-4 */}
-                 <div className={`max-w-sm w-full p-3 md:p-4 ${slide.bgColor} ${slide.textColor} bg-opacity-95 rounded-lg backdrop-blur-sm border border-white/20 shadow-lg`}> {/* Changed max-w-md to max-w-sm, reduced padding */}
+                 <div className={`max-w-xs w-full p-2 md:p-3 ${slide.bgColor} ${slide.textColor} bg-opacity-95 rounded-md backdrop-blur-sm border border-white/20 shadow-md`}> {/* Changed max-w-md to max-w-sm, reduced padding */}
                 <h2 className="text-xl md:text-2xl font-bold mb-2 tracking-tight font-serif"> {/* Smaller font, added font-serif */}
                     {slide.title}
                   </h2>
