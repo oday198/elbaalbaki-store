@@ -616,7 +616,7 @@ export default function Home() {
             <div 
               key={slide._id || slide.id || index}
               className="w-full flex-shrink-0 relative"
-              style={{ minHeight: '200px' }}
+              style={{ minHeight: '300px' }}
             >
               <div 
                 className="absolute inset-0 bg-cover bg-center"
@@ -647,7 +647,7 @@ export default function Home() {
               </div>
             </div>
           )) : (
-            <div className="w-full flex-shrink-0 relative" style={{ minHeight: '200px' }}>
+            <div className="w-full flex-shrink-0 relative" style={{ minHeight: '300px' }}>
               <div className="bg-gradient-to-br from-gray-100 to-gray-200 w-full h-full flex items-center justify-center">
                 <p className="text-gray-500 text-lg">No slides available</p>
               </div>
@@ -740,9 +740,7 @@ export default function Home() {
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Featured Products</h3>
             <p className="text-gray-600 text-base md:text-lg">Carefully selected for quality and performance</p>
           </div>
-          <button className="btn-secondary text-sm px-6 py-3 rounded-xl hover:scale-105 transition-transform">
-            View All <ChevronRight size={16} className="inline ml-1" />
-          </button>
+         
         </div>
 
         {filteredProducts.length > 0 ? (
