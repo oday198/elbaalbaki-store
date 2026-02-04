@@ -616,7 +616,7 @@ export default function Home() {
             <div 
               key={slide._id || slide.id || index}
               className="w-full flex-shrink-0 relative"
-              style={{ minHeight: '350px' }}
+              style={{ minHeight: '300px' }}
             >
               <div 
                 className="absolute inset-0 bg-cover bg-center"
@@ -632,22 +632,22 @@ export default function Home() {
               </div>
               
               {/* SMALLER CONTENT BOX AT BOTTOM */}
-              <div className="relative container mx-auto px-4 h-full flex items-end pb-6 md:pb-12">
-                <div className={`max-w-md w-full p-4 md:p-6 ${slide.bgColor} ${slide.textColor} bg-opacity-90 md:bg-opacity-95 rounded-lg md:rounded-xl backdrop-blur-sm border border-white/20 shadow-2xl`}>
-                  <h2 className="text-2xl md:text-4xl font-bold mb-2 md:mb-4 tracking-tight">
+                <div className="relative container mx-auto px-4 h-full flex items-end pb-4 md:pb-8"> {/* Reduced pb-6 to pb-4 */}
+                 <div className={`max-w-sm w-full p-3 md:p-4 ${slide.bgColor} ${slide.textColor} bg-opacity-95 rounded-lg backdrop-blur-sm border border-white/20 shadow-lg`}> {/* Changed max-w-md to max-w-sm, reduced padding */}
+                <h2 className="text-xl md:text-2xl font-bold mb-2 tracking-tight font-serif"> {/* Smaller font, added font-serif */}
                     {slide.title}
                   </h2>
-                  <p className="text-base md:text-lg mb-4 md:mb-6 opacity-90">
+                  <p className="text-sm md:text-base mb-3 opacity-90 font-light italic"> {/* Smaller, italic, lighter */}
                     {slide.subtitle}
                   </p>
-                  <button className="btn-primary px-6 md:px-8 py-3 md:py-4 text-sm md:text-base rounded-lg md:rounded-xl hover:scale-105 transition-transform shadow-lg">
-                    {slide.buttonText} <ChevronRight size={18} className="inline ml-2" />
+                  <button className="btn-primary px-4 py-2 text-xs md:text-sm rounded-lg hover:scale-105 transition-transform shadow-lg">
+                    {slide.buttonText} <ChevronRight size={14} className="inline ml-1" /> {/* Smaller icon */}
                   </button>
                 </div>
               </div>
             </div>
           )) : (
-            <div className="w-full flex-shrink-0 relative" style={{ minHeight: '350px' }}>
+            <div className="w-full flex-shrink-0 relative" style={{ minHeight: '300px' }}>
               <div className="bg-gradient-to-br from-gray-100 to-gray-200 w-full h-full flex items-center justify-center">
                 <p className="text-gray-500 text-lg">No slides available</p>
               </div>
@@ -794,6 +794,7 @@ export default function Home() {
                     </span>
                   </div>
                   <h4 className="font-bold text-gray-900 text-sm md:text-lg mb-2 md:mb-3 line-clamp-2">{product.name}</h4>
+                  <p className="text-gray-600 text-sm mb-3">{product.description}</p>
                   
                   {product.rating && (
                     <div className="flex items-center gap-2 mb-3 md:mb-4">

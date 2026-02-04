@@ -543,7 +543,7 @@ export default function AdminPage() {
                         className="w-full h-40 md:h-48 object-cover rounded-lg mb-4"
                       />
                       <h3 className="font-bold text-base md:text-lg mb-2 text-gray-900">{product.name}</h3>
-                      <p className="text-gray-700 text-sm mb-2 line-clamp-2">{product.description}</p>
+                      <p className="text-gray-700 text-sm mb-2">{product.description}</p>
                       <p className="text-blue-600 font-bold text-lg md:text-xl mb-4">${product.price.toFixed(2)}</p>
                       <div className="flex gap-2">
                         <button
