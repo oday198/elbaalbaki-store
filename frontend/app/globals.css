@@ -22,9 +22,8 @@
   --text-primary: #0a0a0a;
   --text-secondary: #525252;
   --text-muted: #737373;
-}
-
-@theme inline {
+  
+  /* Custom theme variables */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
@@ -136,12 +135,41 @@ body {
   border-radius: var(--radius-md);
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
   border-color: var(--gray-300);
+}
+
+/* Product card image container - NO SIDE SPACING */
+.product-card-image {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  background: var(--gray-50);
+}
+
+.product-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Product card content */
+.product-card-content {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Button styles */
@@ -263,6 +291,7 @@ body {
   top: 0.75rem;
   left: 0.75rem;
   text-transform: uppercase;
+  z-index: 10;
 }
 
 /* Sale badge */
@@ -286,6 +315,7 @@ body {
   font-size: 1.25rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  color: var(--text-primary);
 }
 
 /* Hero slider styles */
@@ -299,9 +329,16 @@ body {
 }
 
 .slide-content {
-  background: linear-gradient(to right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%);
+  background: rgba(255, 255, 255, 0.85);
   padding: 3rem;
   border-radius: var(--radius-md);
+}
+
+@media (max-width: 768px) {
+  .slide-content {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem 1.5rem;
+  }
 }
 
 .slider-dots {
@@ -311,6 +348,7 @@ body {
   transform: translateX(-50%);
   display: flex;
   gap: 0.5rem;
+  z-index: 20;
 }
 
 .slider-dot {
@@ -346,7 +384,7 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid var(--border-color);
   border-radius: 50%;
   width: 2.5rem;
@@ -429,13 +467,36 @@ body {
   border-color: var(--border-color);
 }
 
-/* Background utilities */
+/* Background utilities - FIXED FOR BETTER CONTRAST ON MOBILE */
 .bg-light {
   background: var(--gray-50);
 }
 
 .bg-card {
   background: var(--card-bg);
+}
+
+/* White sections - better contrast on mobile */
+.bg-white {
+  background: #ffffff;
+}
+
+.section-white {
+  background: #ffffff;
+  color: var(--text-primary);
+}
+
+/* Ensure text is always visible on white backgrounds */
+.section-white h1,
+.section-white h2,
+.section-white h3,
+.section-white h4,
+.section-white h5,
+.section-white h6,
+.section-white p,
+.section-white span,
+.section-white a {
+  color: var(--text-primary) !important;
 }
 
 /* Animation for fading */
@@ -457,11 +518,60 @@ body {
   transform: translateY(-2px);
 }
 
-/* Grid utilities */
+/* Grid utilities - IMPROVED FOR FEATURED PRODUCTS */
 .grid-products {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .grid-products {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
+
+/* Featured products section */
+.featured-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+  .featured-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .product-card-content {
+    padding: 0.75rem;
+  }
+  
+  .price {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .product-card-content {
+    padding: 0.5rem;
+  }
 }
 
 /* Container */
@@ -476,13 +586,6 @@ body {
   outline: 2px solid var(--text-primary);
   outline-offset: 2px;
 }
-
-
-
-
-
-
-/* Add these after your existing CSS */
 
 /* Marquee Animation for Rotating Offers */
 @keyframes marquee {
@@ -503,7 +606,7 @@ body {
   animation-play-state: paused;
 }
 
-/* Parisian Style Gradient */
+/* Parisian Style Gradient - IMPROVED CONTRAST */
 .bg-parisian {
   background: linear-gradient(135deg, #ffebee 0%, #f3e5f5 50%, #e8eaf6 100%);
 }
@@ -521,6 +624,7 @@ body {
 .offer-item {
   position: relative;
   padding: 0.5rem 1.5rem;
+  color: var(--text-primary);
 }
 
 .offer-item::after {
@@ -560,7 +664,7 @@ body {
     opacity: 1;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.85;
   }
 }
 
@@ -593,6 +697,15 @@ body {
   .offer-item {
     padding: 0.5rem 1rem;
   }
+  
+  /* Ensure better text visibility on mobile */
+  body {
+    -webkit-text-size-adjust: 100%;
+  }
+  
+  .section-header {
+    font-size: 1rem;
+  }
 }
 
 /* Add a French-inspired background pattern */
@@ -602,8 +715,6 @@ body {
     radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 55%);
 }
 
-
-
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -611,4 +722,35 @@ body {
 
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+
+/* Mobile-specific contrast improvements */
+@media (max-width: 768px) {
+  :root {
+    --text-primary: #000000;
+    --text-secondary: #404040;
+    --text-muted: #666666;
+  }
+  
+  /* Force better contrast on mobile white sections */
+  .bg-white,
+  .section-white,
+  .bg-light {
+    background: #ffffff !important;
+  }
+  
+  /* Ensure all text is dark and visible on mobile */
+  body,
+  h1, h2, h3, h4, h5, h6,
+  p, span, a, div {
+    color: #000000;
+  }
+  
+  .text-muted {
+    color: #666666 !important;
+  }
+  
+  .text-secondary {
+    color: #404040 !important;
+  }
 }
