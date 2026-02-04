@@ -606,7 +606,7 @@ export default function Home() {
       </header>
 
       {/* Hero Slider - IMPROVED FOR MOBILE */}
-      <div className="relative hero-slider overflow-hidden bg-white mx-2 md:mx-8 mt-4 rounded-xl md:rounded-2xl shadow-xl">
+      <div className="relative hero-slider overflow-hidden bg-white mx-2 md:mx-4 mt-2 rounded-lg md:rounded-xl shadow-xl">
         <div 
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -616,7 +616,7 @@ export default function Home() {
             <div 
               key={slide._id || slide.id || index}
               className="w-full flex-shrink-0 relative"
-              style={{ minHeight: '300px' }}
+              style={{ minHeight: '200px' }}
             >
               <div 
                 className="absolute inset-0 bg-cover bg-center"
@@ -647,7 +647,7 @@ export default function Home() {
               </div>
             </div>
           )) : (
-            <div className="w-full flex-shrink-0 relative" style={{ minHeight: '300px' }}>
+            <div className="w-full flex-shrink-0 relative" style={{ minHeight: '200px' }}>
               <div className="bg-gradient-to-br from-gray-100 to-gray-200 w-full h-full flex items-center justify-center">
                 <p className="text-gray-500 text-lg">No slides available</p>
               </div>
