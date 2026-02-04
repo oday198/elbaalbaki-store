@@ -632,8 +632,8 @@ export default function Home() {
               </div>
               
               {/* SMALLER CONTENT BOX AT BOTTOM */}
-                <div className="relative container mx-auto px-4 h-full flex items-end pb-4 md:pb-8"> {/* Reduced pb-6 to pb-4 */}
-                 <div className={`max-w-xs w-full p-2 md:p-3 ${slide.bgColor} ${slide.textColor} bg-opacity-95 rounded-md backdrop-blur-sm border border-white/20 shadow-md`}> {/* Changed max-w-md to max-w-sm, reduced padding */}
+               <div className="relative container mx-auto px-4 h-full flex items-end justify-start pb-4 md:pb-8">
+                 <div className={`max-w-xs w-full p-2 md:p-3 ${slide.bgColor} ${slide.textColor} bg-opacity-95 rounded-md backdrop-blur-sm border border-white/20 shadow-md ml-4 mb-4`}>{/* Changed max-w-md to max-w-sm, reduced padding */}
                 <h2 className="text-xl md:text-2xl font-bold mb-2 tracking-tight font-serif"> {/* Smaller font, added font-serif */}
                     {slide.title}
                   </h2>
