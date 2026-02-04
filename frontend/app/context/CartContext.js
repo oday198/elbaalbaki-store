@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://elbaalbaki-backend.onrender.com';
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
@@ -33,7 +34,8 @@ export function CartProvider({ children }) {
   useEffect(() => {
     const fetchShippingSettings = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/shipping-settings');
+        const response = await axios.get(`${API_URL}/api/shipping-settings`);
+
         setShippingSettings(response.data);
       } catch (error) {
         console.error('Error fetching shipping settings:', error);
@@ -50,7 +52,7 @@ export function CartProvider({ children }) {
     const fetchCart = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/cart/${userId}`);
+        const response = await axios.get(`${API_URL}/api/cart/${userId}`);
         // Ensure we have the cart items array
         const cartItems = response.data.items || [];
         
@@ -94,7 +96,7 @@ export function CartProvider({ children }) {
     try {
       const productId = product._id || product.productId;
       
-      await axios.post(`http://localhost:5000/api/cart/${userId}`, {
+      await axios.post(`${API_URL}/api/cart/${userId}`, {
         productId: productId,
         name: product.name,
         price: product.price,
@@ -130,7 +132,7 @@ export function CartProvider({ children }) {
 
   const removeFromCart = async (itemId) => {
     try {
-      await axios.delete(`http://localhost:5000/api/cart/${userId}/${itemId}`);
+      await axios.delete(`${API_URL}/api/cart/${userId}/${itemId}`);
       
       setCart(prevCart => {
         const newCart = prevCart.filter(item => 
@@ -162,7 +164,7 @@ export function CartProvider({ children }) {
         return;
       }
       
-      await axios.post(`http://localhost:5000/api/cart/${userId}`, {
+      await axios.post(`${API_URL}/api/cart/${userId}`, {
         productId: itemId,
         name: itemInCart.name,
         price: itemInCart.price,
@@ -184,7 +186,7 @@ export function CartProvider({ children }) {
 
   const clearCart = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/cart/${userId}`);
+      await axios.delete(`${API_URL}/api/cart/${userId}`);
       setCart([]);
     } catch (error) {
       console.error('Error clearing cart:', error);
