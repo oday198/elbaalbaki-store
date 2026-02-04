@@ -346,8 +346,8 @@ export default function Home() {
       <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-2 text-sm text-center">
         <div className="container mx-auto px-4">
           <span className="font-medium">AIR CONDITIONER SALE | </span>
-          <a href="https://wa.me/76922894" className="underline hover:opacity-80 transition hover:text-green-400">
-            whatsapp us on 76 - 922 894
+          <a href="https://wa.me/78922256" className="underline hover:opacity-80 transition hover:text-green-400">
+            whatsapp us on 78 - 922 256
           </a>
         </div>
       </div>
@@ -640,7 +640,8 @@ export default function Home() {
                   <p className="text-sm md:text-base mb-3 opacity-90 font-light italic"> {/* Smaller, italic, lighter */}
                     {slide.subtitle}
                   </p>
-                  <button className="btn-primary px-4 py-2 text-xs md:text-sm rounded-lg hover:scale-105 transition-transform shadow-lg">
+                  <button className="btn-primary px-4 py-2 text-xs md:text-sm rounded-lg hover:scale-105 transition-transform shadow-lg"
+                  onClick={() => document.getElementById('products-section')?.scrollIntoView({ behavior: 'smooth' })}>
                     {slide.buttonText} <ChevronRight size={14} className="inline ml-1" /> {/* Smaller icon */}
                   </button>
                 </div>
@@ -734,7 +735,7 @@ export default function Home() {
       </div>
 
       {/* Products Section */}
-      <div className="container mx-auto px-4 py-8 md:py-16">
+      <div id="products-section" className="container mx-auto px-4 py-8 md:py-16">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-10 gap-4">
           <div>
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Featured Products</h3>
@@ -1236,11 +1237,11 @@ export default function Home() {
               </ul>
               <div className="mt-8">
                 <a 
-                  href="https://wa.me/76922894"
+                  href="https://wa.me/78922256"
                   className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:scale-105 transition-transform shadow-lg"
                 >
                   <Phone size={16} />
-                  WhatsApp: 76-922-894
+                  WhatsApp: 76-922-256
                 </a>
               </div>
             </div>
@@ -1250,6 +1251,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      
     </div>
   );
 }

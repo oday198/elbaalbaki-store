@@ -403,7 +403,7 @@ app.get('/api/settings', authMiddleware, async (req, res) => {
   try {
     // You can expand this to store WhatsApp number and other settings in DB
     res.json({ 
-      whatsappNumber: process.env.WHATSAPP_NUMBER || '+1234567890',
+      whatsappNumber: process.env.WHATSAPP_NUMBER || '78922256',
       storeName: process.env.STORE_NAME || 'My Store'
     });
   } catch (error) {
