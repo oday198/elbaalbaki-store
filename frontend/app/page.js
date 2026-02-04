@@ -367,10 +367,10 @@ export default function Home() {
               </button>
               
               <div className="flex flex-col cursor-pointer group">
-                <h1 className="text-2xl font-light tracking-widest text-uppercase group-hover:scale-105 transition-transform">
+                <h1 className="text-xl md:text-2xl font-light tracking-widest text-uppercase group-hover:scale-105 transition-transform">
                   <span className="font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">ELBAALBAKI</span> ELECTRIC
                 </h1>
-                <p className="text-xs text-gray-500 -mt-1 group-hover:text-gray-700 transition">Premium Electronics & Appliances</p>
+                <p className="text-xs text-gray-500 -mt-1 group-hover:text-gray-700 transition hidden md:block">Premium Electronics & Appliances</p>
               </div>
             </div>
 
@@ -431,7 +431,7 @@ export default function Home() {
             </div>
 
             {/* Right: Currency selector, cart, favorites */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 md:gap-4">
               {/* Currency selector */}
               <div className="hidden md:flex items-center gap-1 px-3 py-2 rounded-lg hover:bg-gray-100 transition cursor-pointer">
                 <select 
@@ -457,7 +457,6 @@ export default function Home() {
                     {getTotalItems()}
                   </span>
                 )}
-                <span className="hidden md:inline text-sm font-medium ml-2">Cart</span>
               </button>
 
               {/* Favorites */}
@@ -476,7 +475,6 @@ export default function Home() {
                     {favorites.length}
                   </span>
                 )}
-                <span className="hidden md:inline text-sm font-medium ml-2">Favorites</span>
               </button>
             </div>
           </div>
@@ -607,8 +605,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Slider */}
-      <div className="relative hero-slider overflow-hidden bg-white mx-4 md:mx-8 mt-4 rounded-2xl shadow-xl">
+      {/* Hero Slider - IMPROVED FOR MOBILE */}
+      <div className="relative hero-slider overflow-hidden bg-white mx-2 md:mx-8 mt-4 rounded-xl md:rounded-2xl shadow-xl">
         <div 
           className="flex transition-transform duration-500 ease-in-out"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -618,7 +616,7 @@ export default function Home() {
             <div 
               key={slide._id || slide.id || index}
               className="w-full flex-shrink-0 relative"
-              style={{ minHeight: '500px' }}
+              style={{ minHeight: '350px' }}
             >
               <div 
                 className="absolute inset-0 bg-cover bg-center"
@@ -630,25 +628,26 @@ export default function Home() {
                   })` 
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
               </div>
               
-              <div className="relative container mx-auto px-8 h-full flex items-center">
-                <div className={`max-w-lg p-8 ${slide.bgColor} ${slide.textColor} bg-opacity-95 rounded-2xl backdrop-blur-sm border border-white/20 shadow-2xl`}>
-                  <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">
+              {/* SMALLER CONTENT BOX AT BOTTOM */}
+              <div className="relative container mx-auto px-4 h-full flex items-end pb-6 md:pb-12">
+                <div className={`max-w-md w-full p-4 md:p-6 ${slide.bgColor} ${slide.textColor} bg-opacity-90 md:bg-opacity-95 rounded-lg md:rounded-xl backdrop-blur-sm border border-white/20 shadow-2xl`}>
+                  <h2 className="text-2xl md:text-4xl font-bold mb-2 md:mb-4 tracking-tight">
                     {slide.title}
                   </h2>
-                  <p className="text-xl mb-8 opacity-90">
+                  <p className="text-base md:text-lg mb-4 md:mb-6 opacity-90">
                     {slide.subtitle}
                   </p>
-                  <button className="btn-primary px-8 py-4 text-lg rounded-xl hover:scale-105 transition-transform shadow-lg">
-                    {slide.buttonText} <ChevronRight size={20} className="inline ml-2" />
+                  <button className="btn-primary px-6 md:px-8 py-3 md:py-4 text-sm md:text-base rounded-lg md:rounded-xl hover:scale-105 transition-transform shadow-lg">
+                    {slide.buttonText} <ChevronRight size={18} className="inline ml-2" />
                   </button>
                 </div>
               </div>
             </div>
           )) : (
-            <div className="w-full flex-shrink-0 relative" style={{ minHeight: '500px' }}>
+            <div className="w-full flex-shrink-0 relative" style={{ minHeight: '350px' }}>
               <div className="bg-gradient-to-br from-gray-100 to-gray-200 w-full h-full flex items-center justify-center">
                 <p className="text-gray-500 text-lg">No slides available</p>
               </div>
@@ -684,48 +683,48 @@ export default function Home() {
       </div>
 
       {/* Features Section */}
-      <div className="py-12 bg-gradient-to-b from-white to-gray-50">
+      <div className="py-8 md:py-12 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
             {features.length > 0 ? (
               features.map((feature, index) => (
-                <div key={feature._id || index} className="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow hover:-translate-y-1">
-                  <div className="bg-gradient-to-br from-blue-100 to-purple-100 p-4 rounded-2xl">
-                    <span className="text-3xl">{feature.icon}</span>
+                <div key={feature._id || index} className="flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-shadow hover:-translate-y-1">
+                  <div className="bg-gradient-to-br from-blue-100 to-purple-100 p-3 md:p-4 rounded-xl md:rounded-2xl flex-shrink-0">
+                    <span className="text-2xl md:text-3xl">{feature.icon}</span>
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg mb-2">{feature.title}</h4>
-                    <p className="text-gray-600">{feature.description}</p>
+                    <h4 className="font-bold text-gray-900 text-base md:text-lg mb-1 md:mb-2">{feature.title}</h4>
+                    <p className="text-gray-600 text-sm md:text-base">{feature.description}</p>
                   </div>
                 </div>
               ))
             ) : (
               <>
-                <div className="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow hover:-translate-y-1">
-                  <div className="bg-gradient-to-br from-green-100 to-blue-100 p-4 rounded-2xl">
-                    <Truck size={28} className="text-gray-700" />
+                <div className="flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-shadow hover:-translate-y-1">
+                  <div className="bg-gradient-to-br from-green-100 to-blue-100 p-3 md:p-4 rounded-xl md:rounded-2xl">
+                    <Truck size={24} className="text-gray-700 md:w-7 md:h-7" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg mb-2">Free Shipping</h4>
-                    <p className="text-gray-600">On orders over $100</p>
+                    <h4 className="font-bold text-gray-900 text-base md:text-lg mb-1 md:mb-2">Free Shipping</h4>
+                    <p className="text-gray-600 text-sm md:text-base">On orders over $100</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow hover:-translate-y-1">
-                  <div className="bg-gradient-to-br from-yellow-100 to-orange-100 p-4 rounded-2xl">
-                    <Shield size={28} className="text-gray-700" />
+                <div className="flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-shadow hover:-translate-y-1">
+                  <div className="bg-gradient-to-br from-yellow-100 to-orange-100 p-3 md:p-4 rounded-xl md:rounded-2xl">
+                    <Shield size={24} className="text-gray-700 md:w-7 md:h-7" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg mb-2">2-Year Warranty</h4>
-                    <p className="text-gray-600">On all products</p>
+                    <h4 className="font-bold text-gray-900 text-base md:text-lg mb-1 md:mb-2">2-Year Warranty</h4>
+                    <p className="text-gray-600 text-sm md:text-base">On all products</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-6 p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow hover:-translate-y-1">
-                  <div className="bg-gradient-to-br from-purple-100 to-pink-100 p-4 rounded-2xl">
-                    <Star size={28} className="text-gray-700" />
+                <div className="flex items-center gap-4 md:gap-6 p-4 md:p-6 bg-white rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-shadow hover:-translate-y-1">
+                  <div className="bg-gradient-to-br from-purple-100 to-pink-100 p-3 md:p-4 rounded-xl md:rounded-2xl">
+                    <Star size={24} className="text-gray-700 md:w-7 md:h-7" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-lg mb-2">Premium Quality</h4>
-                    <p className="text-gray-600">Branded products only</p>
+                    <h4 className="font-bold text-gray-900 text-base md:text-lg mb-1 md:mb-2">Premium Quality</h4>
+                    <p className="text-gray-600 text-sm md:text-base">Branded products only</p>
                   </div>
                 </div>
               </>
@@ -735,11 +734,11 @@ export default function Home() {
       </div>
 
       {/* Products Section */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="flex justify-between items-center mb-10">
+      <div className="container mx-auto px-4 py-8 md:py-16">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-10 gap-4">
           <div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-2">Featured Products</h3>
-            <p className="text-gray-600 text-lg">Carefully selected for quality and performance</p>
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Featured Products</h3>
+            <p className="text-gray-600 text-base md:text-lg">Carefully selected for quality and performance</p>
           </div>
           <button className="btn-secondary text-sm px-6 py-3 rounded-xl hover:scale-105 transition-transform">
             View All <ChevronRight size={16} className="inline ml-1" />
@@ -747,62 +746,63 @@ export default function Home() {
         </div>
 
         {filteredProducts.length > 0 ? (
-          <div className="grid-products">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
             {filteredProducts.map(product => (
               <div key={product._id} className="product-card group hover:shadow-2xl">
-                <div className="relative bg-gradient-to-b from-gray-50 to-white overflow-hidden rounded-t-2xl">
+                {/* FULL WIDTH IMAGE - NO SIDE SPACES */}
+                <div className="product-card-image">
                   {product.createdAt && new Date(product.createdAt) > new Date(Date.now() - 12 * 60 * 60 * 1000) && (
-                    <div className="absolute top-4 left-4 z-10">
-                      <div className="badge badge-new px-3 py-1.5 rounded-full shadow-lg">NEW</div>
+                    <div className="absolute top-2 md:top-4 left-2 md:left-4 z-10">
+                      <div className="badge badge-new px-2 md:px-3 py-1 md:py-1.5 rounded-full shadow-lg text-xs">NEW</div>
                     </div>
                   )}
-                  <div className="absolute top-4 right-4 z-10 flex flex-col gap-2">
+                  <div className="absolute top-2 md:top-4 right-2 md:right-4 z-10 flex flex-col gap-2">
                     <button 
                       onClick={() => handleFavoriteToggle(product)}
-                      className={`p-2.5 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-lg ${
+                      className={`p-1.5 md:p-2.5 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 shadow-lg ${
                         isFavorited(product._id) 
                           ? 'bg-red-500 text-white hover:bg-red-600' 
                           : 'bg-white hover:bg-gray-100'
                       }`}
                     >
                       <Heart 
-                        size={18} 
+                        size={16} 
+                        className="md:w-[18px] md:h-[18px]"
                         fill={isFavorited(product._id) ? "currentColor" : "none"}
-                        className={isFavorited(product._id) ? "animate-pulse" : ""}
                       />
                     </button>
                     <button 
                       onClick={() => handleShareProduct(product)}
-                      className="p-2.5 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 bg-white hover:bg-gray-100 shadow-lg"
+                      className="p-1.5 md:p-2.5 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 bg-white hover:bg-gray-100 shadow-lg"
                     >
-                      <Share2 size={18} />
+                      <Share2 size={16} className="md:w-[18px] md:h-[18px]" />
                     </button>
                   </div>
-                  <div className="aspect-square flex items-center justify-center p-8">
-                    <img
-                      src={`${API_URL}${product.image}`}
-                      alt={product.name}
-                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500"
-                      onError={handleImageError}
-                    />
-                  </div>
+                  <img
+                    src={`${API_URL}${product.image}`}
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    onError={handleImageError}
+                  />
                 </div>
-                <div className="p-6">
+                
+                {/* PRODUCT CONTENT */}
+                <div className="product-card-content">
                   <div className="mb-2">
-                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-100 px-3 py-1 rounded-full">
+                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-100 px-2 md:px-3 py-1 rounded-full">
                       {product.category}
                     </span>
                   </div>
-                  <h4 className="font-bold text-gray-900 text-lg mb-3 line-clamp-2 h-14">{product.name}</h4>
+                  <h4 className="font-bold text-gray-900 text-sm md:text-lg mb-2 md:mb-3 line-clamp-2">{product.name}</h4>
                   
                   {product.rating && (
-                    <div className="flex items-center gap-2 mb-4">
+                    <div className="flex items-center gap-2 mb-3 md:mb-4">
                       <div className="flex">
                         {[...Array(5)].map((_, i) => (
                           <Star 
                             key={i} 
-                            size={14} 
-                            className={i < Math.floor(product.rating) ? "text-yellow-500 fill-yellow-500" : "text-gray-300"} 
+                            size={12} 
+                            className={`md:w-[14px] md:h-[14px] ${i < Math.floor(product.rating) ? "text-yellow-500 fill-yellow-500" : "text-gray-300"}`} 
                           />
                         ))}
                       </div>
@@ -810,27 +810,31 @@ export default function Home() {
                     </div>
                   )}
                   
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between pt-3 md:pt-4 border-t border-gray-100 gap-2 md:gap-0 mt-auto">
                     <div>
-                      <div className="price text-2xl font-bold">${product.price.toFixed(2)}</div>
+                      <div className="price text-lg md:text-2xl font-bold">${product.price.toFixed(2)}</div>
                       {product.oldPrice && (
-                        <div className="price-old text-sm text-gray-400">${product.oldPrice.toFixed(2)}</div>
+                        <div className="price-old text-xs md:text-sm text-gray-400">${product.oldPrice.toFixed(2)}</div>
                       )}
                     </div>
                     <button
                       onClick={() => handleAddToCart(product)}
                       disabled={isAddingToCart[product._id]}
-                      className={`btn-primary text-sm py-3 px-6 rounded-xl flex items-center gap-2 ${
+                      className={`btn-primary text-xs md:text-sm py-2 md:py-3 px-3 md:px-6 rounded-lg md:rounded-xl flex items-center gap-2 w-full md:w-auto justify-center ${
                         isAddingToCart[product._id] ? 'bg-green-600 hover:bg-green-700' : ''
                       }`}
                     >
                       {isAddingToCart[product._id] ? (
                         <>
-                          <Check size={16} />
-                          Added
+                          <Check size={14} className="md:w-4 md:h-4" />
+                          <span className="hidden md:inline">Added</span>
                         </>
                       ) : (
-                        'Add to Cart'
+                        <>
+                          <Plus size={14} className="md:hidden" />
+                          <span className="md:hidden">Add</span>
+                          <span className="hidden md:inline">Add to Cart</span>
+                        </>
                       )}
                     </button>
                   </div>

@@ -442,71 +442,71 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-md">
+      <header className="bg-white shadow-md sticky top-0 z-40">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-800">Admin Dashboard</h1>
+          <h1 className="text-xl md:text-2xl font-bold text-gray-800">Admin Dashboard</h1>
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+            className="flex items-center gap-2 bg-red-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-red-700 transition text-sm md:text-base"
           >
-            <LogOut size={20} />
-            Logout
+            <LogOut size={18} className="md:w-5 md:h-5" />
+            <span className="hidden md:inline">Logout</span>
           </button>
         </div>
       </header>
 
       {/* Stats */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-xl p-6 shadow-lg">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-blue-100 mb-2">Total Products</p>
-                <p className="text-4xl font-bold">{products.length}</p>
+      <div className="container mx-auto px-4 py-4 md:py-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 mb-6 md:mb-8">
+          <div className="bg-gradient-to-r from-blue-600 to-blue-500 text-white rounded-lg md:rounded-xl p-4 md:p-6 shadow-lg">
+            <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 md:gap-0">
+              <div className="text-center md:text-left">
+                <p className="text-blue-100 mb-1 md:mb-2 text-xs md:text-base">Products</p>
+                <p className="text-2xl md:text-4xl font-bold">{products.length}</p>
               </div>
-              <Package size={48} className="opacity-80" />
+              <Package size={32} className="opacity-80 md:w-12 md:h-12" />
             </div>
           </div>
-          <div className="bg-gradient-to-r from-purple-600 to-purple-500 text-white rounded-xl p-6 shadow-lg">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-purple-100 mb-2">Total Orders</p>
-                <p className="text-4xl font-bold">{orders.length}</p>
+          <div className="bg-gradient-to-r from-purple-600 to-purple-500 text-white rounded-lg md:rounded-xl p-4 md:p-6 shadow-lg">
+            <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 md:gap-0">
+              <div className="text-center md:text-left">
+                <p className="text-purple-100 mb-1 md:mb-2 text-xs md:text-base">Orders</p>
+                <p className="text-2xl md:text-4xl font-bold">{orders.length}</p>
               </div>
-              <ShoppingBag size={48} className="opacity-80" />
+              <ShoppingBag size={32} className="opacity-80 md:w-12 md:h-12" />
             </div>
           </div>
-          <div className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-xl p-6 shadow-lg">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-green-100 mb-2">Home Slides</p>
-                <p className="text-4xl font-bold">{slides.length}</p>
+          <div className="bg-gradient-to-r from-green-600 to-green-500 text-white rounded-lg md:rounded-xl p-4 md:p-6 shadow-lg">
+            <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 md:gap-0">
+              <div className="text-center md:text-left">
+                <p className="text-green-100 mb-1 md:mb-2 text-xs md:text-base">Slides</p>
+                <p className="text-2xl md:text-4xl font-bold">{slides.length}</p>
               </div>
-              <Image size={48} className="opacity-80" />
+              <Image size={32} className="opacity-80 md:w-12 md:h-12" />
             </div>
           </div>
-          <div className="bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-xl p-6 shadow-lg">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-orange-100 mb-2">Active Offers</p>
-                <p className="text-4xl font-bold">{offers.length}</p>
+          <div className="bg-gradient-to-r from-orange-600 to-orange-500 text-white rounded-lg md:rounded-xl p-4 md:p-6 shadow-lg">
+            <div className="flex flex-col md:flex-row items-center md:justify-between gap-2 md:gap-0">
+              <div className="text-center md:text-left">
+                <p className="text-orange-100 mb-1 md:mb-2 text-xs md:text-base">Offers</p>
+                <p className="text-2xl md:text-4xl font-bold">{offers.length}</p>
               </div>
-              <Tag size={48} className="opacity-80" />
+              <Tag size={32} className="opacity-80 md:w-12 md:h-12" />
             </div>
           </div>
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="flex border-b overflow-x-auto">
+        <div className="bg-white rounded-lg md:rounded-xl shadow-lg overflow-hidden">
+          <div className="flex border-b overflow-x-auto scrollbar-hide">
             {['products', 'orders', 'slides', 'offers', 'features', 'shipping'].map(tab => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`flex-1 min-w-0 py-4 px-6 font-semibold transition whitespace-nowrap ${
+                className={`flex-1 min-w-fit py-3 md:py-4 px-3 md:px-6 font-semibold transition whitespace-nowrap text-xs md:text-base ${
                   activeTab === tab
                     ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -514,47 +514,48 @@ export default function AdminPage() {
             ))}
           </div>
 
-          <div className="p-6">
+          <div className="p-4 md:p-6">
             {/* Products Tab */}
             {activeTab === 'products' && (
               <div>
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800">Products</h2>
+                <div className="flex justify-between items-center mb-4 md:mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-gray-800">Products</h2>
                   <button
                     onClick={() => {
                       setEditingProduct(null);
                       setProductForm({ name: '', description: '', price: '', category: 'General', inStock: true });
                       setShowProductModal(true);
                     }}
-                    className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                    className="flex items-center gap-2 bg-blue-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm md:text-base"
                   >
-                    <Plus size={20} />
-                    Add Product
+                    <Plus size={18} className="md:w-5 md:h-5" />
+                    <span className="hidden md:inline">Add Product</span>
+                    <span className="md:hidden">Add</span>
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                   {products.map(product => (
-                    <div key={product._id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div key={product._id} className="bg-white rounded-lg border-2 border-gray-200 p-4 shadow-sm">
                       <img
                         src={`${API_URL}${product.image}`}
                         alt={product.name}
-                        className="w-full h-48 object-cover rounded-lg mb-4"
+                        className="w-full h-40 md:h-48 object-cover rounded-lg mb-4"
                       />
-                      <h3 className="font-bold text-lg mb-2">{product.name}</h3>
-                      <p className="text-gray-600 text-sm mb-2">{product.description}</p>
-                      <p className="text-blue-600 font-bold text-xl mb-4">${product.price.toFixed(2)}</p>
+                      <h3 className="font-bold text-base md:text-lg mb-2 text-gray-900">{product.name}</h3>
+                      <p className="text-gray-700 text-sm mb-2 line-clamp-2">{product.description}</p>
+                      <p className="text-blue-600 font-bold text-lg md:text-xl mb-4">${product.price.toFixed(2)}</p>
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleEditProduct(product)}
-                          className="flex-1 flex items-center justify-center gap-2 bg-yellow-600 text-white py-2 rounded-lg hover:bg-yellow-700 transition"
+                          className="flex-1 flex items-center justify-center gap-2 bg-yellow-600 text-white py-2 rounded-lg hover:bg-yellow-700 transition text-sm md:text-base"
                         >
                           <Edit size={16} />
                           Edit
                         </button>
                         <button
                           onClick={() => handleDeleteProduct(product._id)}
-                          className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition"
+                          className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition text-sm md:text-base"
                         >
                           <Trash2 size={16} />
                           Delete
@@ -566,17 +567,17 @@ export default function AdminPage() {
               </div>
             )}
 
-            {/* Orders Tab */}
+            {/* Orders Tab - IMPROVED MOBILE */}
             {activeTab === 'orders' && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-6">Orders</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Orders</h2>
                 <div className="space-y-4">
                   {orders.map(order => (
-                    <div key={order._id} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                    <div key={order._id} className="bg-white rounded-lg border-2 border-gray-200 p-4 md:p-6 shadow-sm">
                       <div className="flex justify-between items-start mb-4">
                         <div>
-                          <p className="font-bold text-lg">Order #{order.orderNumber}</p>
-                          <p className="text-gray-600">{new Date(order.createdAt).toLocaleString()}</p>
+                          <p className="font-bold text-base md:text-lg text-gray-900">Order #{order.orderNumber}</p>
+                          <p className="text-gray-600 text-xs md:text-sm">{new Date(order.createdAt).toLocaleString()}</p>
                         </div>
                         <button
                           onClick={() => handleDeleteOrder(order._id)}
@@ -587,25 +588,25 @@ export default function AdminPage() {
                       </div>
                       
                       <div className="grid md:grid-cols-2 gap-4 mb-4">
-                        <div>
-                          <p className="font-semibold">Customer:</p>
-                          <p>{order.customerName}</p>
-                          <p>{order.customerPhone}</p>
+                        <div className="bg-gray-50 p-3 md:p-4 rounded-lg">
+                          <p className="font-semibold text-gray-900 mb-2">Customer:</p>
+                          <p className="text-gray-800 font-medium">{order.customerName}</p>
+                          <p className="text-gray-700">{order.customerPhone}</p>
                           <p className="text-sm text-gray-600">{order.customerAddress}</p>
                         </div>
-                        <div>
-                          <p className="font-semibold mb-2">Items:</p>
+                        <div className="bg-gray-50 p-3 md:p-4 rounded-lg">
+                          <p className="font-semibold text-gray-900 mb-2">Items:</p>
                           {order.items.map((item, idx) => (
-                            <p key={idx} className="text-sm">
-                              {item.name} x{item.quantity} - ${(item.price * item.quantity).toFixed(2)}
+                            <p key={idx} className="text-sm text-gray-800">
+                              {item.name} x{item.quantity} - <span className="font-bold">${(item.price * item.quantity).toFixed(2)}</span>
                             </p>
                           ))}
                           {order.shippingFee > 0 && (
-                            <p className="text-sm font-semibold mt-2">
+                            <p className="text-sm font-semibold mt-2 text-gray-800">
                               Shipping Fee: ${order.shippingFee.toFixed(2)}
                             </p>
                           )}
-                          <p className="font-bold text-lg mt-2">Total: ${order.totalAmount.toFixed(2)}</p>
+                          <p className="font-bold text-lg mt-2 text-gray-900">Total: ${order.totalAmount.toFixed(2)}</p>
                         </div>
                       </div>
 
@@ -614,10 +615,10 @@ export default function AdminPage() {
                           <button
                             key={status}
                             onClick={() => handleUpdateOrderStatus(order._id, status)}
-                            className={`px-4 py-2 rounded-lg font-semibold transition ${
+                            className={`px-3 md:px-4 py-2 rounded-lg font-semibold transition text-xs md:text-sm ${
                               order.status === status
                                 ? 'bg-blue-600 text-white'
-                                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                                : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
                             }`}
                           >
                             {status.charAt(0).toUpperCase() + status.slice(1).replace('-', ' ')}
@@ -633,8 +634,8 @@ export default function AdminPage() {
             {/* Slides Tab */}
             {activeTab === 'slides' && (
               <div>
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800">Homepage Slides</h2>
+                <div className="flex justify-between items-center mb-4 md:mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-gray-800">Homepage Slides</h2>
                   <button
                     onClick={() => {
                       setEditingSlide(null);
@@ -648,34 +649,35 @@ export default function AdminPage() {
                       });
                       setShowSlideModal(true);
                     }}
-                    className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                    className="flex items-center gap-2 bg-blue-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm md:text-base"
                   >
-                    <Plus size={20} />
-                    Add Slide
+                    <Plus size={18} />
+                    <span className="hidden md:inline">Add Slide</span>
+                    <span className="md:hidden">Add</span>
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                   {slides.map(slide => (
-                    <div key={slide._id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div key={slide._id} className="bg-white rounded-lg border-2 border-gray-200 p-4 shadow-sm">
                       <img
                         src={slide.image}
                         alt={slide.title}
-                        className="w-full h-48 object-cover rounded-lg mb-4"
+                        className="w-full h-40 md:h-48 object-cover rounded-lg mb-4"
                       />
-                      <h3 className="font-bold text-lg mb-2">{slide.title}</h3>
-                      <p className="text-gray-600 text-sm mb-2">{slide.subtitle}</p>
+                      <h3 className="font-bold text-base md:text-lg mb-2 text-gray-900">{slide.title}</h3>
+                      <p className="text-gray-700 text-sm mb-2">{slide.subtitle}</p>
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleEditSlide(slide)}
-                          className="flex-1 flex items-center justify-center gap-2 bg-yellow-600 text-white py-2 rounded-lg hover:bg-yellow-700 transition"
+                          className="flex-1 flex items-center justify-center gap-2 bg-yellow-600 text-white py-2 rounded-lg hover:bg-yellow-700 transition text-sm"
                         >
                           <Edit size={16} />
                           Edit
                         </button>
                         <button
                           onClick={() => handleDeleteSlide(slide._id)}
-                          className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition"
+                          className="flex-1 flex items-center justify-center gap-2 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition text-sm"
                         >
                           <Trash2 size={16} />
                           Delete
@@ -690,42 +692,43 @@ export default function AdminPage() {
             {/* Offers Tab */}
             {activeTab === 'offers' && (
               <div>
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800">Rotating Offers</h2>
+                <div className="flex justify-between items-center mb-4 md:mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-gray-800">Rotating Offers</h2>
                   <button
                     onClick={() => {
                       setEditingOffer(null);
                       setOfferForm({ text: '', icon: '🎁', order: 0 });
                       setShowOfferModal(true);
                     }}
-                    className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                    className="flex items-center gap-2 bg-blue-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm md:text-base"
                   >
-                    <Plus size={20} />
-                    Add Offer
+                    <Plus size={18} />
+                    <span className="hidden md:inline">Add Offer</span>
+                    <span className="md:hidden">Add</span>
                   </button>
                 </div>
 
                 <div className="space-y-4">
                   {offers.map(offer => (
-                    <div key={offer._id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div key={offer._id} className="bg-white rounded-lg border-2 border-gray-200 p-4 shadow-sm">
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-3">
                           <span className="text-2xl">{offer.icon}</span>
                           <div>
-                            <h3 className="font-bold">{offer.text}</h3>
+                            <h3 className="font-bold text-gray-900">{offer.text}</h3>
                             <p className="text-gray-600 text-sm">Order: {offer.order}</p>
                           </div>
                         </div>
                         <div className="flex gap-2">
                           <button
                             onClick={() => handleEditOffer(offer)}
-                            className="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition"
+                            className="bg-yellow-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-yellow-700 transition text-sm"
                           >
                             Edit
                           </button>
                           <button
                             onClick={() => handleDeleteOffer(offer._id)}
-                            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+                            className="bg-red-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-red-700 transition text-sm"
                           >
                             Delete
                           </button>
@@ -740,44 +743,45 @@ export default function AdminPage() {
             {/* Features Tab */}
             {activeTab === 'features' && (
               <div>
-                <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800">Features Section</h2>
+                <div className="flex justify-between items-center mb-4 md:mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-gray-800">Features Section</h2>
                   <button
                     onClick={() => {
                       setEditingFeature(null);
                       setFeatureForm({ title: '', description: '', icon: '⭐', order: 0 });
                       setShowFeatureModal(true);
                     }}
-                    className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                    className="flex items-center gap-2 bg-blue-600 text-white px-3 md:px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm md:text-base"
                   >
-                    <Plus size={20} />
-                    Add Feature
+                    <Plus size={18} />
+                    <span className="hidden md:inline">Add Feature</span>
+                    <span className="md:hidden">Add</span>
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                   {features.map(feature => (
-                    <div key={feature._id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div key={feature._id} className="bg-white rounded-lg border-2 border-gray-200 p-4 shadow-sm">
                       <div className="flex items-center gap-3 mb-4">
-                        <div className="bg-white p-3 rounded-full border border-gray-200">
+                        <div className="bg-gray-100 p-3 rounded-full border border-gray-300">
                           <span className="text-xl">{feature.icon}</span>
                         </div>
                         <div>
-                          <h3 className="font-bold">{feature.title}</h3>
+                          <h3 className="font-bold text-gray-900">{feature.title}</h3>
                           <p className="text-gray-600 text-sm">Order: {feature.order}</p>
                         </div>
                       </div>
-                      <p className="text-gray-600 text-sm mb-4">{feature.description}</p>
+                      <p className="text-gray-700 text-sm mb-4">{feature.description}</p>
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleEditFeature(feature)}
-                          className="flex-1 bg-yellow-600 text-white py-2 rounded-lg hover:bg-yellow-700 transition"
+                          className="flex-1 bg-yellow-600 text-white py-2 rounded-lg hover:bg-yellow-700 transition text-sm"
                         >
                           Edit
                         </button>
                         <button
                           onClick={() => handleDeleteFeature(feature._id)}
-                          className="flex-1 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition"
+                          className="flex-1 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition text-sm"
                         >
                           Delete
                         </button>
@@ -791,21 +795,21 @@ export default function AdminPage() {
             {/* Shipping Settings Tab */}
             {activeTab === 'shipping' && (
               <div>
-                <div className="mb-6">
-                  <h2 className="text-2xl font-bold text-gray-800 mb-2">Shipping Settings</h2>
-                  <p className="text-gray-600">Configure shipping fees and free shipping thresholds</p>
+                <div className="mb-4 md:mb-6">
+                  <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">Shipping Settings</h2>
+                  <p className="text-gray-600 text-sm md:text-base">Configure shipping fees and free shipping thresholds</p>
                 </div>
 
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-8 border border-blue-100">
-                  <div className="max-w-2xl space-y-6">
-                    <div className="flex items-center gap-2 mb-6">
-                      <Truck size={32} className="text-blue-600" />
-                      <h3 className="text-xl font-bold text-gray-800">Shipping Configuration</h3>
+                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 md:p-8 border border-blue-100">
+                  <div className="max-w-2xl space-y-4 md:space-y-6">
+                    <div className="flex items-center gap-2 mb-4 md:mb-6">
+                      <Truck size={24} className="text-blue-600 md:w-8 md:h-8" />
+                      <h3 className="text-lg md:text-xl font-bold text-gray-800">Shipping Configuration</h3>
                     </div>
 
-                    <div className="bg-white rounded-lg p-6 space-y-6">
+                    <div className="bg-white rounded-lg p-4 md:p-6 space-y-4 md:space-y-6">
                       <div>
-                        <label className="block text-gray-700 font-semibold mb-3">
+                        <label className="block text-gray-700 font-semibold mb-2 md:mb-3 text-sm md:text-base">
                           Shipping Fee ($)
                         </label>
                         <input
@@ -817,16 +821,16 @@ export default function AdminPage() {
                             ...shippingSettings, 
                             shippingFee: parseFloat(e.target.value) || 0 
                           })}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base md:text-lg text-gray-900"
                           placeholder="0.00"
                         />
-                        <p className="text-sm text-gray-500 mt-2">
+                        <p className="text-xs md:text-sm text-gray-600 mt-2">
                           Set to 0 for free shipping on all orders
                         </p>
                       </div>
 
                       <div>
-                        <label className="block text-gray-700 font-semibold mb-3">
+                        <label className="block text-gray-700 font-semibold mb-2 md:mb-3 text-sm md:text-base">
                           Free Shipping Threshold ($)
                         </label>
                         <input
@@ -838,10 +842,10 @@ export default function AdminPage() {
                             ...shippingSettings, 
                             freeShippingThreshold: parseFloat(e.target.value) || 0 
                           })}
-                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-lg"
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-base md:text-lg text-gray-900"
                           placeholder="0.00"
                         />
-                        <p className="text-sm text-gray-500 mt-2">
+                        <p className="text-xs md:text-sm text-gray-600 mt-2">
                           Orders above this amount get free shipping. Set to 0 to disable.
                         </p>
                       </div>
@@ -856,35 +860,35 @@ export default function AdminPage() {
                           })}
                           className="w-5 h-5 rounded"
                         />
-                        <label className="font-semibold text-gray-700">
+                        <label className="font-semibold text-gray-800 text-sm md:text-base">
                           Enable Shipping Fees
                         </label>
                       </div>
 
-                      <div className="border-t border-gray-200 pt-6">
-                        <h4 className="font-bold text-gray-800 mb-3">Preview:</h4>
-                        <div className="space-y-2 text-sm text-gray-600">
+                      <div className="border-t border-gray-200 pt-4 md:pt-6">
+                        <h4 className="font-bold text-gray-800 mb-3 text-sm md:text-base">Preview:</h4>
+                        <div className="space-y-2 text-xs md:text-sm text-gray-700">
                           {shippingSettings.shippingEnabled ? (
                             <>
-                              <p>• Standard shipping fee: <span className="font-bold">${shippingSettings.shippingFee.toFixed(2)}</span></p>
+                              <p>• Standard shipping fee: <span className="font-bold text-gray-900">${shippingSettings.shippingFee.toFixed(2)}</span></p>
                               {shippingSettings.freeShippingThreshold > 0 && (
-                                <p>• Free shipping for orders over: <span className="font-bold">${shippingSettings.freeShippingThreshold.toFixed(2)}</span></p>
+                                <p>• Free shipping for orders over: <span className="font-bold text-gray-900">${shippingSettings.freeShippingThreshold.toFixed(2)}</span></p>
                               )}
                               {shippingSettings.shippingFee === 0 && (
                                 <p className="text-green-600 font-semibold">• All orders ship free!</p>
                               )}
                             </>
                           ) : (
-                            <p className="text-gray-500">Shipping fees are currently disabled</p>
+                            <p className="text-gray-600">Shipping fees are currently disabled</p>
                           )}
                         </div>
                       </div>
 
                       <button
                         onClick={handleShippingSettingsUpdate}
-                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-bold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg flex items-center justify-center gap-2"
+                        className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 md:py-4 rounded-lg font-bold hover:from-blue-700 hover:to-purple-700 transition-all shadow-lg flex items-center justify-center gap-2 text-sm md:text-base"
                       >
-                        <Check size={20} />
+                        <Check size={18} className="md:w-5 md:h-5" />
                         Save Shipping Settings
                       </button>
                     </div>
@@ -899,9 +903,9 @@ export default function AdminPage() {
       {/* Product Modal */}
       {showProductModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full p-8 max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-2xl max-w-2xl w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-bold">{editingProduct ? 'Edit Product' : 'Add Product'}</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900">{editingProduct ? 'Edit Product' : 'Add Product'}</h3>
               <button onClick={() => setShowProductModal(false)} className="p-2 hover:bg-gray-100 rounded-full">
                 <X size={24} />
               </button>
@@ -909,22 +913,22 @@ export default function AdminPage() {
 
             <form onSubmit={handleProductSubmit} className="space-y-4">
               <div>
-                <label className="block font-semibold mb-2">Product Name</label>
+                <label className="block font-semibold mb-2 text-gray-800">Product Name</label>
                 <input
                   type="text"
                   value={productForm.name}
                   onChange={(e) => setProductForm({ ...productForm, name: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Description</label>
+                <label className="block font-semibold mb-2 text-gray-800">Description</label>
                 <textarea
                   value={productForm.description}
                   onChange={(e) => setProductForm({ ...productForm, description: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   rows="3"
                   required
                 />
@@ -932,30 +936,30 @@ export default function AdminPage() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-semibold mb-2">Price</label>
+                  <label className="block font-semibold mb-2 text-gray-800">Price</label>
                   <input
                     type="number"
                     step="0.01"
                     value={productForm.price}
                     onChange={(e) => setProductForm({ ...productForm, price: e.target.value })}
-                    className="w-full px-4 py-2 border rounded-lg"
+                    className="w-full px-4 py-2 border rounded-lg text-gray-900"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block font-semibold mb-2">Category</label>
+                  <label className="block font-semibold mb-2 text-gray-800">Category</label>
                   <input
                     type="text"
                     value={productForm.category}
                     onChange={(e) => setProductForm({ ...productForm, category: e.target.value })}
-                    className="w-full px-4 py-2 border rounded-lg"
+                    className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Product Image</label>
+                <label className="block font-semibold mb-2 text-gray-800">Product Image</label>
                 <input
                   type="file"
                   accept="image/*"
@@ -965,7 +969,7 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Product Video (Optional)</label>
+                <label className="block font-semibold mb-2 text-gray-800">Product Video (Optional)</label>
                 <input
                   type="file"
                   accept="video/*"
@@ -981,7 +985,7 @@ export default function AdminPage() {
                   onChange={(e) => setProductForm({ ...productForm, inStock: e.target.checked })}
                   className="w-5 h-5"
                 />
-                <label className="font-semibold">In Stock</label>
+                <label className="font-semibold text-gray-800">In Stock</label>
               </div>
 
               <button
@@ -998,9 +1002,9 @@ export default function AdminPage() {
       {/* Slide Modal */}
       {showSlideModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-2xl w-full p-8 max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-2xl max-w-2xl w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-bold">{editingSlide ? 'Edit Slide' : 'Add Slide'}</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900">{editingSlide ? 'Edit Slide' : 'Add Slide'}</h3>
               <button onClick={() => setShowSlideModal(false)} className="p-2 hover:bg-gray-100 rounded-full">
                 <X size={24} />
               </button>
@@ -1008,44 +1012,44 @@ export default function AdminPage() {
 
             <form onSubmit={handleSlideSubmit} className="space-y-4">
               <div>
-                <label className="block font-semibold mb-2">Title</label>
+                <label className="block font-semibold mb-2 text-gray-800">Title</label>
                 <input
                   type="text"
                   value={slideForm.title}
                   onChange={(e) => setSlideForm({ ...slideForm, title: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Subtitle</label>
+                <label className="block font-semibold mb-2 text-gray-800">Subtitle</label>
                 <input
                   type="text"
                   value={slideForm.subtitle}
                   onChange={(e) => setSlideForm({ ...slideForm, subtitle: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Button Text</label>
+                <label className="block font-semibold mb-2 text-gray-800">Button Text</label>
                 <input
                   type="text"
                   value={slideForm.buttonText}
                   onChange={(e) => setSlideForm({ ...slideForm, buttonText: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                 />
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block font-semibold mb-2">Background Color</label>
+                  <label className="block font-semibold mb-2 text-gray-800">Background Color</label>
                   <select
                     value={slideForm.bgColor}
                     onChange={(e) => setSlideForm({ ...slideForm, bgColor: e.target.value })}
-                    className="w-full px-4 py-2 border rounded-lg"
+                    className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   >
                     <option value="bg-gray-50">Light Gray</option>
                     <option value="bg-gray-900">Dark Gray</option>
@@ -1055,11 +1059,11 @@ export default function AdminPage() {
                 </div>
 
                 <div>
-                  <label className="block font-semibold mb-2">Text Color</label>
+                  <label className="block font-semibold mb-2 text-gray-800">Text Color</label>
                   <select
                     value={slideForm.textColor}
                     onChange={(e) => setSlideForm({ ...slideForm, textColor: e.target.value })}
-                    className="w-full px-4 py-2 border rounded-lg"
+                    className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   >
                     <option value="text-gray-900">Dark Gray</option>
                     <option value="text-white">White</option>
@@ -1069,7 +1073,7 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Slide Image</label>
+                <label className="block font-semibold mb-2 text-gray-800">Slide Image</label>
                 <input
                   type="file"
                   accept="image/*"
@@ -1080,12 +1084,12 @@ export default function AdminPage() {
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Order (Display sequence)</label>
+                <label className="block font-semibold mb-2 text-gray-800">Order (Display sequence)</label>
                 <input
                   type="number"
                   value={slideForm.order}
                   onChange={(e) => setSlideForm({ ...slideForm, order: parseInt(e.target.value) || 0 })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                 />
               </div>
 
@@ -1103,9 +1107,9 @@ export default function AdminPage() {
       {/* Offer Modal */}
       {showOfferModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-8 max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-bold">{editingOffer ? 'Edit Offer' : 'Add Offer'}</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900">{editingOffer ? 'Edit Offer' : 'Add Offer'}</h3>
               <button onClick={() => setShowOfferModal(false)} className="p-2 hover:bg-gray-100 rounded-full">
                 <X size={24} />
               </button>
@@ -1113,36 +1117,36 @@ export default function AdminPage() {
 
             <form onSubmit={handleOfferSubmit} className="space-y-4">
               <div>
-                <label className="block font-semibold mb-2">Offer Text</label>
+                <label className="block font-semibold mb-2 text-gray-800">Offer Text</label>
                 <input
                   type="text"
                   value={offerForm.text}
                   onChange={(e) => setOfferForm({ ...offerForm, text: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   placeholder="✨ FREE INSTALLATION on all air conditioners"
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Icon (Emoji)</label>
+                <label className="block font-semibold mb-2 text-gray-800">Icon (Emoji)</label>
                 <input
                   type="text"
                   value={offerForm.icon}
                   onChange={(e) => setOfferForm({ ...offerForm, icon: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   placeholder="🎁"
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Order (Display sequence)</label>
+                <label className="block font-semibold mb-2 text-gray-800">Order (Display sequence)</label>
                 <input
                   type="number"
                   value={offerForm.order}
                   onChange={(e) => setOfferForm({ ...offerForm, order: parseInt(e.target.value) || 0 })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                 />
               </div>
 
@@ -1160,9 +1164,9 @@ export default function AdminPage() {
       {/* Feature Modal */}
       {showFeatureModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-2xl max-w-md w-full p-8 max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-2xl max-w-md w-full p-6 md:p-8 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-2xl font-bold">{editingFeature ? 'Edit Feature' : 'Add Feature'}</h3>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900">{editingFeature ? 'Edit Feature' : 'Add Feature'}</h3>
               <button onClick={() => setShowFeatureModal(false)} className="p-2 hover:bg-gray-100 rounded-full">
                 <X size={24} />
               </button>
@@ -1170,48 +1174,48 @@ export default function AdminPage() {
 
             <form onSubmit={handleFeatureSubmit} className="space-y-4">
               <div>
-                <label className="block font-semibold mb-2">Title</label>
+                <label className="block font-semibold mb-2 text-gray-800">Title</label>
                 <input
                   type="text"
                   value={featureForm.title}
                   onChange={(e) => setFeatureForm({ ...featureForm, title: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   placeholder="Free Shipping"
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Description</label>
+                <label className="block font-semibold mb-2 text-gray-800">Description</label>
                 <input
                   type="text"
                   value={featureForm.description}
                   onChange={(e) => setFeatureForm({ ...featureForm, description: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   placeholder="On orders over $100"
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Icon (Emoji)</label>
+                <label className="block font-semibold mb-2 text-gray-800">Icon (Emoji)</label>
                 <input
                   type="text"
                   value={featureForm.icon}
                   onChange={(e) => setFeatureForm({ ...featureForm, icon: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                   placeholder="🚚"
                   required
                 />
               </div>
 
               <div>
-                <label className="block font-semibold mb-2">Order (Display sequence)</label>
+                <label className="block font-semibold mb-2 text-gray-800">Order (Display sequence)</label>
                 <input
                   type="number"
                   value={featureForm.order}
                   onChange={(e) => setFeatureForm({ ...featureForm, order: parseInt(e.target.value) || 0 })}
-                  className="w-full px-4 py-2 border rounded-lg"
+                  className="w-full px-4 py-2 border rounded-lg text-gray-900"
                 />
               </div>
 
