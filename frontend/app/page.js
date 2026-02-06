@@ -38,7 +38,8 @@ export default function Home() {
   const [isAddingToCart, setIsAddingToCart] = useState({});
 
   // Footer categories
-  const footerCategories = ['OUTDOOR', 'ELECTRONICS', 'IT & OFFICE', 'BIG APPLIANCES', 'SMALL APPLIANCES'];
+const footerCategories = ['New Arrivals', 'Popular', 'Deals', 'Collections', 'Support'];
+
 
   // Currency options
   const currencies = ['USD', 'EUR', 'GBP', 'AED'];
@@ -355,7 +356,7 @@ export default function Home() {
       {/* Top WhatsApp Banner */}
       <div className="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-2 text-sm text-center">
         <div className="container mx-auto px-4">
-          <span className="font-medium">AIR CONDITIONER SALE | </span>
+          <span className="font-medium">BETTER EVERYDAY | </span>
           <a href="https://wa.me/78922256" className="underline hover:opacity-80 transition hover:text-green-400">
             whatsapp us on 78 - 922 256
           </a>
@@ -380,7 +381,7 @@ export default function Home() {
               <h1 className="text-xl md:text-2xl font-light tracking-widest text-uppercase group-hover:scale-105 transition-transform">
                 <span className="font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">{websiteName}</span>
               </h1>
-              <p className="text-xs text-gray-500 -mt-1 group-hover:text-gray-700 transition hidden md:block">Premium Electronics & Appliances</p>
+              <p className="text-xs text-gray-500 -mt-1 group-hover:text-gray-700 transition hidden md:block">MADE FOR YOU</p>
               </div>
            </div>
 
@@ -752,7 +753,7 @@ export default function Home() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-10 gap-4">
           <div>
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Featured Products</h3>
-            <p className="text-gray-600 text-base md:text-lg">Carefully selected for quality and performance</p>
+            <p className="text-gray-600 text-base md:text-lg">Only the Best for You</p>
           </div>
          
         </div>
@@ -1205,7 +1206,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold tracking-widest mb-6">
                 <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">{websiteName}</span>
               </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">Premium electronics and appliances at competitive prices. Quality guaranteed with 2-year warranty on all products.</p>
+              <p className="text-gray-400 text-sm leading-relaxed">Great products, happy vibes, and care you can trust.</p>
             </div>
             <div>
               <h4 className="font-bold text-lg mb-6 text-white">Categories</h4>
@@ -1233,15 +1234,15 @@ export default function Home() {
               <ul className="space-y-4 text-gray-400 text-sm">
                 <li className="flex items-center gap-3">
                   <MapPin size={16} className="text-gray-500" />
-                  <span>123 Electronics Street, City</span>
+                  <span>Beirut, Lebanon</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone size={16} className="text-gray-500" />
-                  <span>+1 234 567 8900</span>
+                  <span>+961 78 922 256</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <User size={16} className="text-gray-500" />
-                  <span>info@Elbaalbakielectric.com</span>
+                  <span>info@Elbaalbaki.com</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <span className="text-gray-500">🕒</span>
