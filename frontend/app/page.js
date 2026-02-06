@@ -24,6 +24,7 @@ export default function Home() {
   const [currency, setCurrency] = useState('USD');
   const sliderRef = useRef(null);
   const [searchResults, setSearchResults] = useState([]);
+  const [websiteName, setWebsiteName] = useState('ELBAALBAKI ELECTRIC');
   const [isSearching, setIsSearching] = useState(false);
   const [useSearchEndpoint, setUseSearchEndpoint] = useState(false);
 
@@ -46,6 +47,7 @@ export default function Home() {
     fetchProducts();
     fetchHomepageData();
     loadFavorites();
+    fetchWebsiteName();
     
     const interval = setInterval(() => {
       if (slides.length > 0) {
@@ -55,6 +57,14 @@ export default function Home() {
     
     return () => clearInterval(interval);
   }, [slides.length]);
+  const fetchWebsiteName = async () => {
+  try {
+    const res = await axios.get(`${API_URL}/api/website-settings`);
+    setWebsiteName(res.data.name);
+  } catch (error) {
+    // Keep default name
+  }
+};
 
   // Smooth scrolling and toast setup
   useEffect(() => {
@@ -367,12 +377,15 @@ export default function Home() {
               </button>
               
               <div className="flex flex-col cursor-pointer group">
-                <h1 className="text-xl md:text-2xl font-light tracking-widest text-uppercase group-hover:scale-105 transition-transform">
-                  <span className="font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">ELBAALBAKI</span> ELECTRIC
-                </h1>
-                <p className="text-xs text-gray-500 -mt-1 group-hover:text-gray-700 transition hidden md:block">Premium Electronics & Appliances</p>
+              <h1 className="text-xl md:text-2xl font-light tracking-widest text-uppercase group-hover:scale-105 transition-transform">
+                <span className="font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">{websiteName}</span>
+              </h1>
+              <p className="text-xs text-gray-500 -mt-1 group-hover:text-gray-700 transition hidden md:block">Premium Electronics & Appliances</p>
               </div>
-            </div>
+           </div>
+
+            
+
 
             {/* Center: Search (desktop) */}
             <div className="hidden lg:flex flex-1 max-w-xl mx-8">
@@ -1190,7 +1203,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             <div>
               <h3 className="text-2xl font-bold tracking-widest mb-6">
-                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">ELBAALBAKI</span> ELECTRIC
+                <span className="bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">{websiteName}</span>
               </h3>
               <p className="text-gray-400 text-sm leading-relaxed">Premium electronics and appliances at competitive prices. Quality guaranteed with 2-year warranty on all products.</p>
             </div>

@@ -31,6 +31,7 @@ export default function AdminPage() {
   const [editingSlide, setEditingSlide] = useState(null);
   const [editingOffer, setEditingOffer] = useState(null);
   const [editingFeature, setEditingFeature] = useState(null);
+  const [websiteName, setWebsiteName] = useState('ELBAALBAKI ELECTRIC');
   
   // Forms
   const [productForm, setProductForm] = useState({
@@ -77,25 +78,43 @@ export default function AdminPage() {
   const fetchData = async () => {
     try {
       const token = localStorage.getItem('adminToken');
-      const config = { headers: { Authorization: `Bearer ${token}` } };
+      const config = { 
+        headers: { Authorization: `Bearer ${token}` },
+        timeout: 15000
+      };
 
       const [productsRes, ordersRes, slidesRes, offersRes, featuresRes, shippingRes] = await Promise.all([
-        axios.get(`${API_URL}/api/products`),
-        axios.get(`${API_URL}/api/orders`, config),
-        axios.get(`${API_URL}/api/homepage/slides`),
-        axios.get(`${API_URL}/api/homepage/offers`),
-        axios.get(`${API_URL}/api/homepage/features`),
-        axios.get(`${API_URL}/api/shipping-settings`)
+        axios.get(`${API_URL}/api/products`).catch(() => ({ data: [] })),
+        axios.get(`${API_URL}/api/orders`, config).catch(() => ({ data: [] })),
+        axios.get(`${API_URL}/api/homepage/slides`).catch(() => ({ data: [] })),
+        axios.get(`${API_URL}/api/homepage/offers`).catch(() => ({ data: [] })),
+        axios.get(`${API_URL}/api/homepage/features`).catch(() => ({ data: [] })),
+        axios.get(`${API_URL}/api/shipping-settings`).catch(() => ({ data: { shippingFee: 10, freeShippingThreshold: 100 } }))
       ]);
 
-      setProducts(productsRes.data);
-      setOrders(ordersRes.data);
-      setSlides(slidesRes.data);
-      setOffers(offersRes.data);
-      setFeatures(featuresRes.data);
-      setShippingSettings(shippingRes.data);
+      const websiteRes = await axios.get(`${API_URL}/api/website-settings`).catch(() => ({ data: { name: 'ELBAALBAKI ELECTRIC' } }));
+
+      setProducts(productsRes.data || []);
+      setOrders(ordersRes.data || []);
+      setSlides(slidesRes.data || []);
+      setOffers(offersRes.data || []);
+      setFeatures(featuresRes.data || []);
+      setShippingSettings(shippingRes.data || { shippingFee: 10, freeShippingThreshold: 100 });
+      setWebsiteName(websiteRes.data.name || 'ELBAALBAKI ELECTRIC');
+
     } catch (error) {
       console.error('Error fetching data:', error);
+      setProducts([]);
+      setOrders([]);
+      setSlides([]);
+      setOffers([]);
+      setFeatures([]);
+      setWebsiteName('ELBAALBAKI ELECTRIC');
+      setShippingSettings({ shippingFee: 10, freeShippingThreshold: 100 });
+      
+      if (!error.response) {
+        alert('Server is starting up. Please wait a moment and refresh.');
+      }
     }
   };
 
@@ -499,8 +518,8 @@ export default function AdminPage() {
         {/* Tabs */}
         <div className="bg-white rounded-lg md:rounded-xl shadow-lg overflow-hidden">
           <div className="flex border-b overflow-x-auto scrollbar-hide">
-            {['products', 'orders', 'slides', 'offers', 'features', 'shipping'].map(tab => (
-              <button
+            {['products', 'orders', 'slides', 'offers', 'features', 'shipping', 'website-name'].map(tab => (
+               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`flex-1 min-w-fit py-3 md:py-4 px-3 md:px-6 font-semibold transition whitespace-nowrap text-xs md:text-base ${
@@ -509,7 +528,7 @@ export default function AdminPage() {
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                {tab === 'website-name' ? 'Website Name' : tab.charAt(0).toUpperCase() + tab.slice(1)}
               </button>
             ))}
           </div>
@@ -567,7 +586,7 @@ export default function AdminPage() {
               </div>
             )}
 
-            {/* Orders Tab - IMPROVED MOBILE */}
+            {/* Orders Tab */}
             {activeTab === 'orders' && (
               <div>
                 <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 md:mb-6">Orders</h2>
@@ -628,6 +647,36 @@ export default function AdminPage() {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {/* Website Name Tab */}
+            {activeTab === 'website-name' && (
+              <div className="bg-white p-6 rounded-xl shadow mb-6">
+                <h3 className="text-xl font-bold mb-4">Website Name</h3>
+                <input 
+                  type="text" 
+                  value={websiteName}
+                  onChange={(e) => setWebsiteName(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg mb-4"
+                  placeholder="Enter website name"
+                />
+                <button 
+                  onClick={async () => {
+                    try {
+                      await axios.put(`${API_URL}/api/website-settings`, 
+                        { name: websiteName }, 
+                        { headers: { Authorization: `Bearer ${localStorage.getItem('adminToken')}` } }
+                      );
+                      alert('Website name updated!');
+                    } catch (error) {
+                      alert('Error updating website name');
+                    }
+                  }}
+                  className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+                >
+                  Update Name
+                </button>
               </div>
             )}
 

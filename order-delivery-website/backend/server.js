@@ -87,10 +87,15 @@ const shippingSettingsSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now }
 });
 
+const websiteSettingsSchema = new mongoose.Schema({
+  name: { type: String, default: "ELBAALBAKI ELECTRIC" }
+});
+
 const Product = mongoose.model('Product', productSchema);
 const Order = mongoose.model('Order', orderSchema);
 const Admin = mongoose.model('Admin', adminSchema);
 const ShippingSettings = mongoose.model('ShippingSettings', shippingSettingsSchema);
+const WebsiteSettings = mongoose.model('WebsiteSettings', websiteSettingsSchema);
 
 const favoriteSchema = new mongoose.Schema({
   userId: { type: String, required: true },
@@ -398,6 +403,34 @@ app.put('/api/shipping-settings', authMiddleware, async (req, res) => {
   }
 });
 
+// Website Settings Routes
+app.get('/api/website-settings', async (req, res) => {
+  try {
+    let settings = await WebsiteSettings.findOne();
+    if (!settings) {
+      settings = new WebsiteSettings();
+      await settings.save();
+    }
+    res.json(settings);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.put('/api/website-settings', authMiddleware, async (req, res) => {
+  try {
+    let settings = await WebsiteSettings.findOne();
+    if (!settings) {
+      settings = new WebsiteSettings();
+    }
+    settings.name = req.body.name;
+    await settings.save();
+    res.json(settings);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // Settings Routes
 app.get('/api/settings', authMiddleware, async (req, res) => {
   try {
@@ -411,9 +444,7 @@ app.get('/api/settings', authMiddleware, async (req, res) => {
   }
 });
 
-// Favorite Routes - Add these before const PORT = process.env.PORT || 5000;
-
-// Get user's favorites
+// Favorite Routes
 app.get('/api/favorites/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
@@ -424,7 +455,6 @@ app.get('/api/favorites/:userId', async (req, res) => {
   }
 });
 
-// Add to favorites
 app.post('/api/favorites', async (req, res) => {
   try {
     const { userId, productId } = req.body;
@@ -443,7 +473,6 @@ app.post('/api/favorites', async (req, res) => {
   }
 });
 
-// Remove from favorites
 app.delete('/api/favorites', async (req, res) => {
   try {
     const { userId, productId } = req.body;
@@ -459,7 +488,6 @@ app.delete('/api/favorites', async (req, res) => {
   }
 });
 
-// Check if product is favorited
 app.get('/api/favorites/:userId/:productId', async (req, res) => {
   try {
     const { userId, productId } = req.params;
@@ -470,9 +498,7 @@ app.get('/api/favorites/:userId/:productId', async (req, res) => {
   }
 });
 
-
-
-
+// Cart Routes
 app.get('/api/cart/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
@@ -482,7 +508,6 @@ app.get('/api/cart/:userId', async (req, res) => {
       await cart.save();
     }
     
-    // Ensure items have proper data
     const populatedItems = await Promise.all(cart.items.map(async (item) => {
       try {
         const product = await Product.findById(item.productId);
@@ -504,6 +529,7 @@ app.get('/api/cart/:userId', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 app.post('/api/cart/:userId', async (req, res) => {
   try {
     const { userId } = req.params;
@@ -557,6 +583,7 @@ app.delete('/api/cart/:userId', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
 // Homepage Models
 const homepageSlideSchema = new mongoose.Schema({
   title: String,
@@ -587,6 +614,7 @@ const featureSchema = new mongoose.Schema({
 const HomepageSlide = mongoose.model('HomepageSlide', homepageSlideSchema);
 const Offer = mongoose.model('Offer', offerSchema);
 const Feature = mongoose.model('Feature', featureSchema);
+
 // Homepage Slides Routes
 app.get('/api/homepage/slides', async (req, res) => {
   try {
@@ -610,47 +638,6 @@ app.post('/api/homepage/slides', authMiddleware, upload.single('image'), async (
   }
 });
 
-// Offers Routes
-app.get('/api/homepage/offers', async (req, res) => {
-  try {
-    const offers = await Offer.find({ isActive: true }).sort({ order: 1 });
-    res.json(offers);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-app.post('/api/homepage/offers', authMiddleware, async (req, res) => {
-  try {
-    const offer = new Offer(req.body);
-    await offer.save();
-    res.status(201).json(offer);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// Features Routes
-app.get('/api/homepage/features', async (req, res) => {
-  try {
-    const features = await Feature.find({ isActive: true }).sort({ order: 1 });
-    res.json(features);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-app.post('/api/homepage/features', authMiddleware, async (req, res) => {
-  try {
-    const feature = new Feature(req.body);
-    await feature.save();
-    res.status(201).json(feature);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-// Homepage Slides PUT/DELETE routes
 app.put('/api/homepage/slides/:id', authMiddleware, upload.single('image'), async (req, res) => {
   try {
     const updateData = { ...req.body };
@@ -687,7 +674,26 @@ app.delete('/api/homepage/slides/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// Offers PUT/DELETE routes
+// Offers Routes
+app.get('/api/homepage/offers', async (req, res) => {
+  try {
+    const offers = await Offer.find({ isActive: true }).sort({ order: 1 });
+    res.json(offers);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.post('/api/homepage/offers', authMiddleware, async (req, res) => {
+  try {
+    const offer = new Offer(req.body);
+    await offer.save();
+    res.status(201).json(offer);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 app.put('/api/homepage/offers/:id', authMiddleware, async (req, res) => {
   try {
     const offer = await Offer.findByIdAndUpdate(
@@ -718,7 +724,26 @@ app.delete('/api/homepage/offers/:id', authMiddleware, async (req, res) => {
   }
 });
 
-// Features PUT/DELETE routes
+// Features Routes
+app.get('/api/homepage/features', async (req, res) => {
+  try {
+    const features = await Feature.find({ isActive: true }).sort({ order: 1 });
+    res.json(features);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+app.post('/api/homepage/features', authMiddleware, async (req, res) => {
+  try {
+    const feature = new Feature(req.body);
+    await feature.save();
+    res.status(201).json(feature);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 app.put('/api/homepage/features/:id', authMiddleware, async (req, res) => {
   try {
     const feature = await Feature.findByIdAndUpdate(
@@ -750,6 +775,7 @@ app.delete('/api/homepage/features/:id', authMiddleware, async (req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

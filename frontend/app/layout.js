@@ -10,7 +10,7 @@ const inter = Inter({
 })
 
 export const metadata = {
-  title: 'ELBAALBAKI ELECTRIC - Premium Electronics & Appliances',
+  title: 'Premium Electronics & Appliances',
   description: 'Shop the latest electronics, appliances, TVs, and home essentials. Free delivery on orders over $100. 2-year warranty on all products.',
   keywords: 'electronics, appliances, TV, air fryers, vacuum cleaners, kitchenware, home appliances, delivery',
   authors: [{ name: 'ELBAALBAKI ELECTRIC' }],
