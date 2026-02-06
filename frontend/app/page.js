@@ -538,9 +538,9 @@ const footerCategories = ['New Arrivals', 'Popular', 'Deals', 'Collections', 'Su
                   ) : (
                     <>
                       {[
-                        { id: 1, text: "✨ FREE INSTALLATION on all air conditioners", icon: "🎁" },
+                        { id: 1, text: "✨ Care & Service: on all items", icon: "🎁" },
                         { id: 2, text: "🇫🇷 Parisian Style Collection - Limited Time", icon: "🇫🇷" },
-                        { id: 3, text: "🔥 HOT DEAL: Buy 2 Get 10% OFF", icon: "🔥" },
+                        { id: 3, text: "🔥TRENDING: Customer Favorites", icon: "🔥" },
                       ].map((offer, index) => (
                         <div 
                           key={`offer-${offer.id}`} 
@@ -729,7 +729,7 @@ const footerCategories = ['New Arrivals', 'Popular', 'Deals', 'Collections', 'Su
                     <Shield size={24} className="text-gray-700 md:w-7 md:h-7" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-900 text-base md:text-lg mb-1 md:mb-2">2-Year Warranty</h4>
+                    <h4 className="font-bold text-gray-900 text-base md:text-lg mb-1 md:mb-2">Reliability You Deserve</h4>
                     <p className="text-gray-600 text-sm md:text-base">On all products</p>
                   </div>
                 </div>
